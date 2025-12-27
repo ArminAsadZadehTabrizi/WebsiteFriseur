@@ -552,33 +552,9 @@ a:hover {
 
 .gallery-item {
     position: relative;
-    height: 450px;
+    height: 400px;
     overflow: hidden;
     cursor: pointer;
-}
-
-.gallery-item:nth-child(1) {
-    grid-row: span 1;
-}
-
-.gallery-item:nth-child(2) {
-    grid-row: span 2;
-}
-
-.gallery-item:nth-child(3) {
-    grid-row: span 1;
-}
-
-.gallery-item:nth-child(4) {
-    grid-row: span 1;
-}
-
-.gallery-item:nth-child(5) {
-    grid-row: span 2;
-}
-
-.gallery-item:nth-child(6) {
-    grid-row: span 1;
 }
 
 .gallery-item img {

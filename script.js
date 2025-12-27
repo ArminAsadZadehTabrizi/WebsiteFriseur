@@ -1,41 +1,51 @@
 // ========================================
-// MOBILE MENU TOGGLE
+// FULL-SCREEN MENU TOGGLE
 // ========================================
 
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const navClose = document.querySelector('.nav-close');
 const body = document.body;
 
+// Open menu
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-
-    // Animate hamburger to X
-    const spans = hamburger.querySelectorAll('span');
-    if (hamburger.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translateY(7px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
+    navMenu.classList.add('active');
+    body.style.overflow = 'hidden'; // Prevent background scroll
 });
 
+// Close menu via close button
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        body.style.overflow = ''; // Restore scroll
+    });
+}
+
 // Close menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-menu a');
+const navLinks = document.querySelectorAll('.nav-links a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+        body.style.overflow = ''; // Restore scroll
     });
 });
+
+// Close menu when clicking on overlay background
+navMenu.addEventListener('click', (e) => {
+    if (e.target === navMenu) {
+        navMenu.classList.remove('active');
+        body.style.overflow = ''; // Restore scroll
+    }
+});
+
+// Close menu on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        body.style.overflow = ''; // Restore scroll
+    }
+});
+
 
 // ========================================
 // PARALLAX EFFECT ON HERO
@@ -181,14 +191,9 @@ const openModal = (e) => {
     bookingModal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scroll
 
-    // Close mobile menu if open
+    // Close nav menu if open
     if (navMenu.classList.contains('active')) {
         navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
     }
 };
 

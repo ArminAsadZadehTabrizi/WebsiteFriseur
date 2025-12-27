@@ -25,9 +25,12 @@
             <div class="logo">BILK BARBERS</div>
             <ul class="nav-menu">
                 <li><a href="#preise">PREISE</a></li>
+                <li><a href="#team">TEAM</a></li>
                 <li><a href="#studio">STUDIO</a></li>
                 <li><a href="#kontakt">KONTAKT</a></li>
+                <li class="nav-cta-mobile"><button class="nav-cta-button" id="navBookingButton">TERMIN</button></li>
             </ul>
+            <button class="nav-cta-button nav-cta-desktop" id="navBookingButtonDesktop">TERMIN</button>
             <button class="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -75,12 +78,12 @@
     </section>
 
     <!-- Team Section -->
-    <section class="section team-section reveal">
+    <section class="section team-section reveal" id="team">
         <h2 class="section-title">DAS TEAM</h2>
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
                         alt="Master Barber">
                 </div>
                 <h3 class="team-name">MARCO SCHNEIDER</h3>
@@ -88,7 +91,7 @@
             </div>
             <div class="team-member">
                 <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
                         alt="Senior Barber">
                 </div>
                 <h3 class="team-name">STEFAN WEBER</h3>
@@ -96,7 +99,7 @@
             </div>
             <div class="team-member">
                 <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
                         alt="Barber">
                 </div>
                 <h3 class="team-name">LUKAS FISCHER</h3>
@@ -132,6 +135,37 @@
             <div class="price-item">
                 <span class="service-name">KOMPLETTPAKET</span>
                 <span class="service-price">75€</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Styles Gallery -->
+    <section class=\"section gallery-section reveal\">
+        <h2 class=\"section-title\">SIGNATURE STYLES</h2>
+        <div class=\"gallery-grid\">
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Classic Fade\">
+            </div>
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Beard Styling\">
+            </div>
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Premium Cut\">
+            </div>
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Modern Styling\">
+            </div>
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Precision Cut\">
+            </div>
+            <div class=\"gallery-item\">
+                <img src=\"https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=800&auto=format&fit=crop\"
+                    alt=\"Clean Shave\">
             </div>
         </div>
     </section>
@@ -236,6 +270,12 @@
                 <div class="form-group">
                     <label class="form-label" for="customerPhone">TELEFON</label>
                     <input type="tel" id="customerPhone" name="phone" class="form-input" placeholder="+49 123 456789"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="customerEmail">E-MAIL</label>
+                    <input type="email" id="customerEmail" name="email" class="form-input" placeholder="deine@email.de"
                         required>
                 </div>
 

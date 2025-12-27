@@ -170,16 +170,41 @@ window.addEventListener('scroll', () => {
 
 const bookingModal = document.getElementById('bookingModal');
 const openModalButton = document.getElementById('openBookingModal');
+const navBookingButton = document.getElementById('navBookingButton');
+const navBookingButtonDesktop = document.getElementById('navBookingButtonDesktop');
 const closeModalButton = document.getElementById('closeModal');
 const bookingForm = document.getElementById('bookingForm');
 
-// Open modal
+// Function to open modal
+const openModal = (e) => {
+    e.preventDefault();
+    bookingModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+
+    // Close mobile menu if open
+    if (navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    }
+};
+
+// Open modal from hero button
 if (openModalButton) {
-    openModalButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        bookingModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-    });
+    openModalButton.addEventListener('click', openModal);
+}
+
+// Open modal from nav button (mobile)
+if (navBookingButton) {
+    navBookingButton.addEventListener('click', openModal);
+}
+
+// Open modal from nav button (desktop)
+if (navBookingButtonDesktop) {
+    navBookingButtonDesktop.addEventListener('click', openModal);
 }
 
 // Close modal

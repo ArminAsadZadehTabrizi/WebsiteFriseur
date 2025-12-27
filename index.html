@@ -49,7 +49,7 @@
                 HANDWERK.<br>
                 UNTERBILK.
             </h1>
-            <a href="tel:+49123456789" class="cta-button">TERMIN BUCHEN</a>
+            <button class="cta-button" id="openBookingModal">TERMIN BUCHEN</button>
         </div>
     </section>
 
@@ -70,6 +70,37 @@
             <div class="intro-image">
                 <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop"
                     alt="Barbershop Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team-section reveal">
+        <h2 class="section-title">DAS TEAM</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop"
+                        alt="Master Barber">
+                </div>
+                <h3 class="team-name">MARCO SCHNEIDER</h3>
+                <p class="team-position">Master Barber</p>
+            </div>
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop"
+                        alt="Senior Barber">
+                </div>
+                <h3 class="team-name">STEFAN WEBER</h3>
+                <p class="team-position">Senior Barber</p>
+            </div>
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop"
+                        alt="Barber">
+                </div>
+                <h3 class="team-name">LUKAS FISCHER</h3>
+                <p class="team-position">Barber & Stylist</p>
             </div>
         </div>
     </section>
@@ -130,8 +161,11 @@
                 </div>
             </div>
             <div class="contact-image">
-                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop"
-                    alt="Barber Tools">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.7846843207647!2d6.774077!3d51.2089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDEyJzMyLjAiTiA2wrA0NicyNi43IkU!5e0!3m2!1sen!2sde!4v1234567890"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="map-iframe">
+                </iframe>
             </div>
         </div>
     </section>
@@ -146,6 +180,70 @@
             </div>
         </div>
     </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+            <h2 class="modal-title">TERMIN BUCHEN</h2>
+            <form class="booking-form" id="bookingForm">
+                <!-- Service Selection -->
+                <div class="form-group">
+                    <label class="form-label">SERVICE WÄHLEN</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="service" value="Maschinenschnitt" required>
+                            <span class="radio-label">Maschinenschnitt (25€)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="service" value="Klassischer Schnitt" required>
+                            <span class="radio-label">Klassischer Schnitt (38€)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="service" value="Premium Cut & Styling" required>
+                            <span class="radio-label">Premium Cut & Styling (55€)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="service" value="Hot Towel Shave" required>
+                            <span class="radio-label">Hot Towel Shave (30€)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="service" value="Komplettpaket" required>
+                            <span class="radio-label">Komplettpaket (75€)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Date & Time -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="bookingDate">DATUM</label>
+                        <input type="date" id="bookingDate" name="date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bookingTime">UHRZEIT</label>
+                        <input type="time" id="bookingTime" name="time" class="form-input" required>
+                    </div>
+                </div>
+
+                <!-- Customer Info -->
+                <div class="form-group">
+                    <label class="form-label" for="customerName">NAME</label>
+                    <input type="text" id="customerName" name="name" class="form-input" placeholder="Dein Name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="customerPhone">TELEFON</label>
+                    <input type="tel" id="customerPhone" name="phone" class="form-input" placeholder="+49 123 456789"
+                        required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="cta-button submit-button">ANFRAGE SENDEN</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

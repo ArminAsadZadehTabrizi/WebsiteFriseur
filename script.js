@@ -281,8 +281,89 @@ if (bookingForm) {
 }
 
 // ========================================
+// LIGHTBOX GALLERY
+// ========================================
+
+const lightboxOverlay = document.getElementById('lightboxOverlay');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const galleryItems = document.querySelectorAll('.gallery-item img');
+
+let currentImageIndex = 0;
+const galleryImages = Array.from(galleryItems).map(img => img.src);
+
+// Function to open lightbox
+const openLightbox = (index) => {
+    currentImageIndex = index;
+    lightboxImage.src = galleryImages[currentImageIndex];
+    lightboxOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+// Function to close lightbox
+const closeLightbox = () => {
+    lightboxOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+// Function to show next image
+const showNextImage = () => {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentImageIndex];
+};
+
+// Function to show previous image
+const showPrevImage = () => {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentImageIndex];
+};
+
+// Add click event to all gallery images
+galleryItems.forEach((img, index) => {
+    img.addEventListener('click', () => {
+        openLightbox(index);
+    });
+});
+
+// Navigation controls
+if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightboxNext) {
+    lightboxNext.addEventListener('click', showNextImage);
+}
+
+if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', showPrevImage);
+}
+
+// Close when clicking on overlay background
+lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlay) {
+        closeLightbox();
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!lightboxOverlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+        closeLightbox();
+    } else if (e.key === 'ArrowRight') {
+        showNextImage();
+    } else if (e.key === 'ArrowLeft') {
+        showPrevImage();
+    }
+});
+
+// ========================================
 // CONSOLE SIGNATURE
 // ========================================
+
 
 console.log('%c BILK BARBERS ', 'background: #050505; color: #f0f0f0; font-size: 24px; font-weight: bold; padding: 10px 20px; letter-spacing: 5px;');
 console.log('%c Präzision. Handwerk. Unterbilk. ', 'background: #f0f0f0; color: #050505; font-size: 12px; padding: 5px 10px; letter-spacing: 2px;');

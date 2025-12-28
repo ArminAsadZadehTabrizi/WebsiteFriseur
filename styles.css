@@ -536,6 +536,48 @@ a:hover {
 }
 
 /* ========================================
+   REVIEWS SECTION
+   ======================================== */
+
+.reviews-section {
+    background-color: rgba(240, 240, 240, 0.03);
+    padding: var(--spacing-xl) var(--spacing-sm);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.review-item {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.review-stars {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.25rem;
+}
+
+.review-text {
+    font-size: 1.125rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.review-author {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+}
+
+/* ========================================
    SIGNATURE STYLES GALLERY
    ======================================== */
 
@@ -780,6 +822,14 @@ a:hover {
     text-transform: uppercase;
 }
 
+.review-badge {
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    font-family: var(--font-body);
+}
+
 /* ========================================
    LIGHTBOX GALLERY
    ======================================== */
@@ -915,6 +965,11 @@ a:hover {
         gap: 1rem;
     }
 
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
     .gallery-item {
         height: 300px;
     }
@@ -988,5 +1043,10 @@ a:hover {
 
     .gallery-item {
         height: 350px;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
     }
 }

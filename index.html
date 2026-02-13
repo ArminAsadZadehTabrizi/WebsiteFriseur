@@ -14,8 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💈</text></svg>">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -172,7 +171,7 @@
                     alt="Hot Towel Shave">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?mens-haircut-back-view-neck&q=80&w=800&auto=format&fit=crop&sat=-100"
+                <img src="https://images.unsplash.com/photo-1629189784191-9afdcbcb0398?q=80&w=800&auto=format&fit=crop&sat=-100"
                     alt="Men's Haircut Back View">
             </div>
         </div>
@@ -242,6 +241,7 @@
             <div class="footer-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
             </div>
         </div>
     </footer>
@@ -279,15 +279,30 @@
                     </div>
                 </div>
 
-                <!-- Date & Time -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label" for="bookingDate">DATUM</label>
-                        <input type="date" id="bookingDate" name="date" class="form-input" required>
+                <!-- Barber Selection -->
+                <div class="form-group">
+                    <label class="form-label">BARBER WÄHLEN</label>
+                    <div class="radio-group" id="barberSelection">
+                        <label class="radio-option">
+                            <input type="radio" name="barber" value="Marco Schneider" required>
+                            <span class="radio-label">Marco Schneider – Master Barber</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="barber" value="Stefan Weber" required>
+                            <span class="radio-label">Stefan Weber – Senior Barber</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="barber" value="Lukas Fischer" required>
+                            <span class="radio-label">Lukas Fischer – Barber & Stylist</span>
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="bookingTime">UHRZEIT</label>
-                        <input type="time" id="bookingTime" name="time" class="form-input" required>
+                </div>
+
+                <!-- Available Time Slots -->
+                <div class="form-group" id="timeslotGroup" style="display: none;">
+                    <label class="form-label">TERMINFENSTER WÄHLEN</label>
+                    <div class="radio-group" id="timeslotSelection">
+                        <!-- Time slots are dynamically populated via script.js -->
                     </div>
                 </div>
 

@@ -236,6 +236,64 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ========================================
+// BARBER TIME SLOT LOGIC
+// ========================================
+
+const barberTimeSlots = {
+    'Marco Schneider': [
+        { label: 'Mo 16.02. – 10:00 Uhr', value: '2026-02-16 10:00' },
+        { label: 'Mo 16.02. – 14:30 Uhr', value: '2026-02-16 14:30' },
+        { label: 'Di 17.02. – 11:00 Uhr', value: '2026-02-17 11:00' },
+        { label: 'Mi 18.02. – 09:30 Uhr', value: '2026-02-18 09:30' },
+        { label: 'Fr 20.02. – 16:00 Uhr', value: '2026-02-20 16:00' },
+    ],
+    'Stefan Weber': [
+        { label: 'Mo 16.02. – 11:30 Uhr', value: '2026-02-16 11:30' },
+        { label: 'Di 17.02. – 13:00 Uhr', value: '2026-02-17 13:00' },
+        { label: 'Mi 18.02. – 15:00 Uhr', value: '2026-02-18 15:00' },
+        { label: 'Do 19.02. – 10:00 Uhr', value: '2026-02-19 10:00' },
+        { label: 'Sa 21.02. – 09:00 Uhr', value: '2026-02-21 09:00' },
+    ],
+    'Lukas Fischer': [
+        { label: 'Di 17.02. – 10:00 Uhr', value: '2026-02-17 10:00' },
+        { label: 'Mi 18.02. – 12:00 Uhr', value: '2026-02-18 12:00' },
+        { label: 'Do 19.02. – 14:00 Uhr', value: '2026-02-19 14:00' },
+        { label: 'Fr 20.02. – 11:30 Uhr', value: '2026-02-20 11:30' },
+        { label: 'Sa 21.02. – 10:30 Uhr', value: '2026-02-21 10:30' },
+    ],
+};
+
+const barberRadios = document.querySelectorAll('input[name="barber"]');
+const timeslotGroup = document.getElementById('timeslotGroup');
+const timeslotSelection = document.getElementById('timeslotSelection');
+
+if (barberRadios.length > 0 && timeslotGroup && timeslotSelection) {
+    barberRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const barber = e.target.value;
+            const slots = barberTimeSlots[barber] || [];
+
+            // Clear previous slots
+            timeslotSelection.innerHTML = '';
+
+            // Build new slot options
+            slots.forEach(slot => {
+                const label = document.createElement('label');
+                label.className = 'radio-option';
+                label.innerHTML = `
+                    <input type="radio" name="timeslot" value="${slot.value}" required>
+                    <span class="radio-label">${slot.label}</span>
+                `;
+                timeslotSelection.appendChild(label);
+            });
+
+            // Show the timeslot group
+            timeslotGroup.style.display = '';
+        });
+    });
+}
+
 // Handle form submission
 if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
@@ -244,13 +302,14 @@ if (bookingForm) {
         // Get form data
         const formData = new FormData(bookingForm);
         const service = formData.get('service');
-        const date = formData.get('date');
-        const time = formData.get('time');
+        const barber = formData.get('barber');
+        const timeslot = formData.get('timeslot');
         const name = formData.get('name');
         const phone = formData.get('phone');
+        const email = formData.get('email');
 
         // Log booking (in production, send to backend)
-        console.log('Booking Request:', { service, date, time, name, phone });
+        console.log('Booking Request:', { service, barber, timeslot, name, phone, email });
 
         // Show success message
         const modalContent = document.querySelector('.modal-content');
@@ -268,7 +327,35 @@ if (bookingForm) {
             closeModal();
             setTimeout(() => {
                 modalContent.innerHTML = originalContent;
-                bookingForm.reset();
+                // Hide timeslot group after reset
+                const resetTimeslotGroup = document.getElementById('timeslotGroup');
+                if (resetTimeslotGroup) {
+                    resetTimeslotGroup.style.display = 'none';
+                }
+
+                // Re-attach barber change listeners after DOM restore
+                const newBarberRadios = document.querySelectorAll('input[name="barber"]');
+                const newTimeslotGroup = document.getElementById('timeslotGroup');
+                const newTimeslotSelection = document.getElementById('timeslotSelection');
+                if (newBarberRadios.length > 0 && newTimeslotGroup && newTimeslotSelection) {
+                    newBarberRadios.forEach(radio => {
+                        radio.addEventListener('change', (ev) => {
+                            const selectedBarber = ev.target.value;
+                            const slots = barberTimeSlots[selectedBarber] || [];
+                            newTimeslotSelection.innerHTML = '';
+                            slots.forEach(slot => {
+                                const lbl = document.createElement('label');
+                                lbl.className = 'radio-option';
+                                lbl.innerHTML = `
+                                    <input type="radio" name="timeslot" value="${slot.value}" required>
+                                    <span class="radio-label">${slot.label}</span>
+                                `;
+                                newTimeslotSelection.appendChild(lbl);
+                            });
+                            newTimeslotGroup.style.display = '';
+                        });
+                    });
+                }
 
                 // Re-attach event listeners after restoring content
                 const newCloseButton = document.getElementById('closeModal');
